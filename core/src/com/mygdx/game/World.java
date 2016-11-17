@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class World {
 	private Chopsticks chopsticks;
     private EvilPanGame evilPanGame;
-    private int score;
+    public int score;
     private int life =3;
     Human[] humans;
 	

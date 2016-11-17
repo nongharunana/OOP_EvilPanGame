@@ -17,7 +17,8 @@ public class WolrdRenderer {
 	private Texture boyImg;
 	private Texture burnBoyImg;
 	private Texture bombImg;
-	private BitmapFont font;
+	private BitmapFont scoreBitmap;
+	private int fontSize=3;
 	private int countBg =0;
 	public WolrdRenderer(EvilPanGame evilPanGame, World world) {
         this.evilPanGame = evilPanGame;
@@ -28,7 +29,9 @@ public class WolrdRenderer {
         burnBoyImg = new Texture("boy3");
         chopsticksImg = new Texture("Chopsticks");
         bombImg = new Texture("Bomb");
-        font = new BitmapFont();
+        scoreBitmap = new BitmapFont();
+        scoreBitmap.getData().setScale(fontSize,fontSize);
+        scoreBitmap.setColor(1.0f,1.0f,1.0f,1.0f);
         fireBg = new Texture[25];
         fireBg[0] = new Texture("fire1.png");
         fireBg[1] = new Texture("fire2.png");
@@ -75,7 +78,7 @@ public class WolrdRenderer {
         		batch.draw(world.humans[i].humanImg,world.humans[i].position.x, world.humans[i].position.y);
         	}
         }
-        font.draw(batch, "score : " + world.getScore(), 100, 500);
+        scoreBitmap.draw(batch, "score : " + world.getScore(), 100, 550);
         
         batch.end();
 

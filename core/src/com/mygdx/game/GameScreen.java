@@ -18,7 +18,7 @@ public class GameScreen extends ScreenAdapter{
 	 private Texture bgImg;
 	 private Texture pauseImg;
 	 private Texture gameOverImg;
-	 private Sound scream_sound;
+	 //private Sound scream_sound;
 	 public static int status_screen=0;
 	 public static final int SCREEN_GAME = 0;
 	 public static final int SCREEN_PAUSE = 2;
@@ -32,13 +32,13 @@ public class GameScreen extends ScreenAdapter{
 	        gameOverImg = new Texture("GameOver.png");
 	        pauseImg = new Texture("Pause.png");
 	        worldRenderer = new WolrdRenderer(evilPanGame, world);
-	        scream_sound = Gdx.audio.newSound(Gdx.files.internal("scream.mp3"));
+	        //scream_sound = Gdx.audio.newSound(Gdx.files.internal("scream.mp3"));
 	    }
 	 @Override
 	    public void render(float delta) {
 		 	SpriteBatch batch = evilPanGame.batch;
 		 	updateGameScreen();
-		 	scream_sound.loop();
+		 	//scream_sound.loop(;
 		 	if(status_screen == SCREEN_GAME){
 		 	update(delta);
 	        Gdx.gl.glClearColor(0, 0, 0, 1);

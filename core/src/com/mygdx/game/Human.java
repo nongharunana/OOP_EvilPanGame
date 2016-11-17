@@ -23,7 +23,7 @@ public class Human {
 			float y = EvilPanGame.HEIGHT-100;
 			float x = (int)(Math.random()*1100)+100;
 			position = new Vector2(x,y);
-			deathImg = new Texture("boy3");
+			deathImg = new Texture("death.png");
 	        normalImg = new Texture("normal.png");
 	        burnImg = new Texture ("burn.png");
 			humanImg = normalImg;
