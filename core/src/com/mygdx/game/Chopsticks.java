@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 
 public class Chopsticks {
@@ -28,4 +30,15 @@ public class Chopsticks {
     public void move(int dir) { 
         position.x += SPEED * DIR_OFFSETS[dir][0];
     }
+
+
+	public void update() {
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+            world.getChopsticks().move(Chopsticks.DIRECTION_LEFT); 
+        }
+        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        	world.getChopsticks().move(Chopsticks.DIRECTION_RIGHT);
+        }   
+		
+	}
 }

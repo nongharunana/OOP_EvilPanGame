@@ -33,6 +33,11 @@ public class WolrdRenderer {
         batch.begin(); 
         batch.draw(bgImg, 0, 0);
         batch.draw(chopsticksImg, position.x,position.y);
+        for(int i=0;i<world.humans.length;i++){
+        	if(world.humans[i]!=null){
+        		batch.draw(world.humans[i].humanImg,world.humans[i].position.x, world.humans[i].position.y);
+        	}
+        }
         font.draw(batch, "score : " + world.getScore(), 200, 60);
         batch.end();
 
