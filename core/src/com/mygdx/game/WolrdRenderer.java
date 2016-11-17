@@ -10,11 +10,11 @@ public class WolrdRenderer {
 	private EvilPanGame evilPanGame;
 	private World world;
 	private Texture chopsticksImg;
-	
 	private SpriteBatch batch;
 	private Texture bgImg;
 	private Texture boyImg;
 	private Texture burnBoyImg;
+	private Texture bombImg;
 	public WolrdRenderer(EvilPanGame evilPanGame, World world) {
         this.evilPanGame = evilPanGame;
         batch = evilPanGame.batch;
@@ -23,6 +23,7 @@ public class WolrdRenderer {
         boyImg = new Texture("boy");
         burnBoyImg = new Texture("boy3");
         chopsticksImg = new Texture("Chopsticks");
+        bombImg = new Texture("Bomb");
     }
 	public void render(float delta) {
 		Vector2 position = world.getChopsticks().getPosition();
