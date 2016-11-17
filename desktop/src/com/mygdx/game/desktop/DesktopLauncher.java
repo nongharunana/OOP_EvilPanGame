@@ -7,8 +7,8 @@ import com.mygdx.game.EvilPanGame;
 public class DesktopLauncher {
     public static void main (String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = 1200;
-        config.height = 700;
+        config.width = EvilPanGame.WIDTH ;
+        config.height = EvilPanGame.HEIGHT;
         new LwjglApplication(new EvilPanGame(), config);
     }
 }

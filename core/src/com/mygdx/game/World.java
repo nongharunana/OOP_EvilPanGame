@@ -7,8 +7,10 @@ public class World {
     World(EvilPanGame evilPanGame) {
         this.evilPanGame = evilPanGame;
  
-       chopsticks = new Chopsticks(100,100);
+       chopsticks = new Chopsticks(100,100,this);
     }
+    
+    
  
     Chopsticks getChopsticks() {
         return chopsticks;

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Chopsticks {
 	private Vector2 position;
+	private World world;
     public static final int DIRECTION_RIGHT = 2;
     public static final int DIRECTION_LEFT = 4;
     public static final int DIRECTION_STILL = 0; 
@@ -15,9 +16,11 @@ public class Chopsticks {
         {0,1},
         {-1,0}
     };
-    public Chopsticks(int x, int y) {
+    public Chopsticks(int x, int y,World world) {
+    	this.world = world;
         position = new Vector2(x,y);
     }    
+    
     
     public Vector2 getPosition() {
         return position;    
