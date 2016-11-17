@@ -6,17 +6,18 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter{
 	 EvilPanGame evilPanGame;
-	 private int x;
-	 private int y;
+	 
 	 private Texture chopsticksImg;
+	 private Chopsticks chopsticks;
 	 public GameScreen(EvilPanGame evilPanGame) {
 	        this.evilPanGame = evilPanGame;
 	        chopsticksImg = new Texture("Chopsticks");
-	        x = 100;
-	        y = 100;
+	        chopsticks = new Chopsticks(100, 100);
+	      
 	    }
 	 @Override
 	    public void render(float delta) {
@@ -25,15 +26,16 @@ public class GameScreen extends ScreenAdapter{
 		 	Gdx.gl.glClearColor(0, 0, 0, 1);
 	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	        batch.begin();
-	        batch.draw(chopsticksImg, x, y);
+	        Vector2 position = chopsticks.getPosition();
+	        batch.draw(chopsticksImg, position.x,position.y);
 	        batch.end();
 	    }
 	  private void update(float delta) {
-		  if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-	            x -= 10;
+		    if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+	            chopsticks.move(chopsticks.DIRECTION_LEFT); 
 	        }
 	        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-	            x += 10;
+	           chopsticks.move(chopsticks.DIRECTION_RIGHT);
 	        }   
 	    }
 }
