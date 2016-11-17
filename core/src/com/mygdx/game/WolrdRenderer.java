@@ -17,17 +17,19 @@ public class WolrdRenderer {
 	private Texture boyImg;
 	private Texture burnBoyImg;
 	private Texture bombImg;
-	private BitmapFont scoreBitmap;
+	public BitmapFont scoreBitmap;
 	private int fontSize=3;
 	private int countBg =0;
+	public int scoresBitMap_positionX=100;
+	public int scoresBitMap_positionY=550;
 	public WolrdRenderer(EvilPanGame evilPanGame, World world) {
         this.evilPanGame = evilPanGame;
         batch = evilPanGame.batch;
         this.world = world;
-        bgImg = new Texture("bg");
-        boyImg = new Texture("boy");
-        burnBoyImg = new Texture("boy3");
-        chopsticksImg = new Texture("Chopsticks");
+        bgImg = new Texture("Pan.png");
+        boyImg = new Texture("normal.png");
+        burnBoyImg = new Texture("burn.png");
+        chopsticksImg = new Texture("Chopsticks.png");
         bombImg = new Texture("Bomb");
         scoreBitmap = new BitmapFont();
         scoreBitmap.getData().setScale(fontSize,fontSize);
@@ -71,14 +73,22 @@ public class WolrdRenderer {
 		Vector2 position = world.getChopsticks().getPosition();
         batch.begin(); 
         drawBg();
-        batch.draw(bgImg, 0, 0);
+        batch.draw(bgImg, 100, 0);
         batch.draw(chopsticksImg, position.x,position.y);
         for(int i=0;i<world.humans.length;i++){
         	if(world.humans[i]!=null){
         		batch.draw(world.humans[i].humanImg,world.humans[i].position.x, world.humans[i].position.y);
         	}
         }
-        scoreBitmap.draw(batch, "score : " + world.getScore(), 100, 550);
+        for(int i=0;i<world.bombs.length;i++){
+        	if(world.bombs[i]!=null){
+        		batch.draw(world.bombs[i].bombImg,world.bombs[i].position.x, world.bombs[i].position.y);
+        	}
+        }
+        
+        if(GameScreen.status_screen != GameScreen.SCREEN_GAMEOVER){
+        	scoreBitmap.draw(batch, "score : " + world.getScore(),scoresBitMap_positionX,scoresBitMap_positionY);
+        }
         
         batch.end();
 

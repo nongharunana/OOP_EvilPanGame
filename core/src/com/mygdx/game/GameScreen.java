@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import javax.swing.text.Position;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
@@ -26,8 +28,8 @@ public class GameScreen extends ScreenAdapter{
 	 public static final int SCREEN_GAMESTART = 1;
 	 public GameScreen(EvilPanGame evilPanGame) {
 	        this.evilPanGame = evilPanGame;
-	        chopsticksImg = new Texture("Chopsticks");
-	        bgImg = new Texture("bg");
+	        chopsticksImg = new Texture("Chopsticks.png");
+	        bgImg = new Texture("Pan.png");
 	        world = new World(evilPanGame);
 	        gameOverImg = new Texture("GameOver.png");
 	        pauseImg = new Texture("Pause.png");
@@ -40,10 +42,10 @@ public class GameScreen extends ScreenAdapter{
 		 	updateGameScreen();
 		 	//scream_sound.loop(;
 		 	if(status_screen == SCREEN_GAME){
-		 	update(delta);
-	        Gdx.gl.glClearColor(0, 0, 0, 1);
-	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	        worldRenderer.render(delta);
+		 		update(delta);
+		 		Gdx.gl.glClearColor(0, 0, 0, 1);
+		 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		 		worldRenderer.render(delta);
 	        }else if(status_screen == SCREEN_PAUSE){
 		 		batch.begin();
 		 		batch.draw(pauseImg, 0, 0);
@@ -51,6 +53,7 @@ public class GameScreen extends ScreenAdapter{
 		 	}	else if(status_screen == SCREEN_GAMEOVER){
 		 		batch.begin();
 		 		batch.draw(gameOverImg, 0, 0);
+		 		worldRenderer.scoreBitmap.draw(batch, "score : " + world.getScore(),worldRenderer.scoresBitMap_positionX,worldRenderer.scoresBitMap_positionY);
 		 		batch.end();
 		 	}/*else if(status_screen == SCREEN_GAMESTART){
 		 		batch.begin();
@@ -64,22 +67,26 @@ public class GameScreen extends ScreenAdapter{
 		    
 	    }
 	  private void updateGameScreen(){
-		  if(Gdx.input.isKeyPressed(Keys.ENTER)) {
-			  status_screen = SCREEN_GAMESTART;
-		  }  
-		  if(status_screen == SCREEN_GAME){
-			  if(Gdx.input.isKeyPressed(Keys.P)){
-			  status_screen = SCREEN_PAUSE;
-			  }
-		  } 
-		  if(status_screen == SCREEN_PAUSE){
-				  if(Gdx.input.isKeyPressed(Keys.SPACE)){
-					  status_screen = SCREEN_GAME;
-					  }
-		  }
-		  if(world.getLife()<=0){
+		 
+		  	if(world.getLife()<=0){
 				  status_screen = SCREEN_GAMEOVER;
+				  worldRenderer.scoresBitMap_positionX=500;
+				  worldRenderer.scoresBitMap_positionY=300;
+			}else{
+				 if(Gdx.input.isKeyPressed(Keys.ENTER)) {
+					  status_screen = SCREEN_GAMESTART;
+				  }  
+				  if(status_screen == SCREEN_GAME){
+					  if(Gdx.input.isKeyPressed(Keys.P)){
+					  status_screen = SCREEN_PAUSE;
+					  }
+				  } 
+				  if(status_screen == SCREEN_PAUSE){
+						  if(Gdx.input.isKeyPressed(Keys.SPACE)){
+							  status_screen = SCREEN_GAME;
+							  }
 				  }
+			}
 	  
 		  
 	  }

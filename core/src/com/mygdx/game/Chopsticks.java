@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 
 public class Chopsticks {
-	private Vector2 position;
+	public Vector2 position;
 	private World world;
     public static final int DIRECTION_RIGHT = 2;
     public static final int DIRECTION_LEFT = 4;
@@ -18,8 +18,9 @@ public class Chopsticks {
         {0,1},
         {-1,0}
     };
-    public Chopsticks(int x, int y,World world) {
+    public Chopsticks(World world) {
     	this.world = world;
+    	int x=100,y=150;;
         position = new Vector2(x,y);
     }    
     
