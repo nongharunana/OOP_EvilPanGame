@@ -9,7 +9,7 @@ public class World {
     private EvilPanGame evilPanGame;
     public Bomb[] bombs;
     public int score;
-    private int life =3;
+    public int life =5;
     private int timer=0;
     Human[] humans;
 	public boolean spacePress;
@@ -21,6 +21,22 @@ public class World {
         bombs = new Bomb[3];
         humans = new Human[10];
     }
+    public void update() {
+		chopsticks.update();
+		updateHuman();
+		updateBomb();
+		GenBomb();
+		reserveHuman();
+		if(checkDoubleSpace()){
+		catchingHuman();
+		}
+		tochingBomb();
+		deathhuman();
+		updateDoubleSpace();
+		deleteBomb();
+		oldSpacePress = spacePress;
+	}
+	
     public int getScore() {
     		if(score<0){
     			score=0;
@@ -68,20 +84,6 @@ public class World {
     	}
     	return -1;
     }
-	public void update() {
-		chopsticks.update();
-		updateHuman();
-		updateBomb();
-		GenBomb();
-		reserveHuman();
-		if(checkDoubleSpace()){
-		catchingHuman();
-		}
-		tochingBomb();
-		deathhuman();
-		updateDoubleSpace();
-		oldSpacePress = spacePress;
-	}
 	
 	private boolean checkDoubleSpace() {
 		if(oldSpacePress == true && spacePress == true){
@@ -106,6 +108,8 @@ public class World {
 			if(humans[i]!=null){
 				if(humans[i].getTime() > Human.DEATH){
 					killHuman(i);
+					decreaseScore();
+					life--;
 				}
 			
 			}
@@ -173,8 +177,8 @@ private void updateBomb() {
 private void deleteBomb() {
 	for(int i=0;i<bombs.length;i++){
 		if(bombs[i]!=null){
-			if(bombs[i].getTimeOfBomb() > Bomb.bombMove){
-				killHuman(i);
+			if(bombs[i].getTimeOfBomb() >= Bomb.bombMove){
+				deleteBombs(i);
 			}
 		
 		}

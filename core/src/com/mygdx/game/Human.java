@@ -23,7 +23,7 @@ public class Human {
 		public Human(Chopsticks chopsticks){
 			this.chopsticks = chopsticks;
 			float y = EvilPanGame.HEIGHT-100;
-			float x = (int)(Math.random()*850)+200;
+			float x = (int)(Math.random()*700)+300;
 			position = new Vector2(x,y);
 			deathImg = new Texture("death.png");
 	        normalImg = new Texture("normal.png");

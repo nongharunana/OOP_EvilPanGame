@@ -20,7 +20,7 @@ public class Chopsticks {
     };
     public Chopsticks(World world) {
     	this.world = world;
-    	int x=100,y=150;;
+    	int x=100,y=100;
         position = new Vector2(x,y);
     }    
     
