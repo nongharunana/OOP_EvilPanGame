@@ -18,8 +18,7 @@ public class GameScreen extends ScreenAdapter{
 	 private Texture bgImg;
 	 private Texture pauseImg;
 	 private Texture gameOverImg;
-	private Sound scream_sound;
-	 
+	 private Sound scream_sound;
 	 public static int status_screen=0;
 	 public static final int SCREEN_GAME = 0;
 	 public static final int SCREEN_PAUSE = 2;
@@ -39,9 +38,9 @@ public class GameScreen extends ScreenAdapter{
 	    public void render(float delta) {
 		 	SpriteBatch batch = evilPanGame.batch;
 		 	updateGameScreen();
+		 	scream_sound.loop();
 		 	if(status_screen == SCREEN_GAME){
 		 	update(delta);
-		 	
 	        Gdx.gl.glClearColor(0, 0, 0, 1);
 	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	        worldRenderer.render(delta);
