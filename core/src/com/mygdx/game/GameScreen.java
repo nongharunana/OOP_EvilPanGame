@@ -12,11 +12,11 @@ public class GameScreen extends ScreenAdapter{
 	 EvilPanGame evilPanGame;
 	 
 	 private Texture chopsticksImg;
-	 private Chopsticks chopsticks;
+	 World world;
 	 public GameScreen(EvilPanGame evilPanGame) {
 	        this.evilPanGame = evilPanGame;
 	        chopsticksImg = new Texture("Chopsticks");
-	        chopsticks = new Chopsticks(100, 100);
+	        world = new World(evilPanGame);
 	      
 	    }
 	 @Override
@@ -26,16 +26,16 @@ public class GameScreen extends ScreenAdapter{
 		 	Gdx.gl.glClearColor(0, 0, 0, 1);
 	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	        batch.begin();
-	        Vector2 position = chopsticks.getPosition();
+	        Vector2 position = world.getChopsticks().getPosition();
 	        batch.draw(chopsticksImg, position.x,position.y);
 	        batch.end();
 	    }
 	  private void update(float delta) {
 		    if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-	            chopsticks.move(chopsticks.DIRECTION_LEFT); 
+	            world.getChopsticks().move(world.getChopsticks().DIRECTION_LEFT); 
 	        }
 	        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-	           chopsticks.move(chopsticks.DIRECTION_RIGHT);
+	        	world.getChopsticks().move(world.getChopsticks().DIRECTION_RIGHT);
 	        }   
 	    }
 }
