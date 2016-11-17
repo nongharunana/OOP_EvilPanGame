@@ -10,13 +10,18 @@ public class WolrdRenderer {
 	private EvilPanGame evilPanGame;
 	private World world;
 	private Texture chopsticksImg;
+	
 	private SpriteBatch batch;
 	private Texture bgImg;
+	private Texture boyImg;
+	private Texture burnBoyImg;
 	public WolrdRenderer(EvilPanGame evilPanGame, World world) {
         this.evilPanGame = evilPanGame;
         batch = evilPanGame.batch;
         this.world = world;
         bgImg = new Texture("bg");
+        boyImg = new Texture("boy");
+        burnBoyImg = new Texture("boy3");
         chopsticksImg = new Texture("Chopsticks");
     }
 	public void render(float delta) {
