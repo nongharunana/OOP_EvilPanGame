@@ -51,19 +51,13 @@ public class Human {
 			timer();
 		}
 		public boolean isCatch(/*Vector2 chopPosition*/){
-			
 			if(chopsticks.position.x>=position.x && chopsticks.position.x <= position.x+humanImg.getWidth() ){
-				
 				if(chopsticks.position.y>=position.y && chopsticks.position.y <= position.y+humanImg.getHeight() ){
-					
 					if(Gdx.input.isKeyPressed(Keys.SPACE)){
-						
-						
 						return true;
 					}
 				}
 			}
-			
 			return false;
 		}
 }

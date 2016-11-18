@@ -35,7 +35,6 @@ public class WolrdRenderer {
         font = new BitmapFont();
         scoreBitmap.getData().setScale(fontSize,fontSize);
         scoreBitmap.setColor(1.0f,1.0f,1.0f,1.0f);
-        
 	}
 	public void render(float delta) {
 		Vector2 position = world.getChopsticks().getPosition();
@@ -52,13 +51,10 @@ public class WolrdRenderer {
         		batch.draw(world.bombsleveln[i].bombImg,world.bombsleveln[i].position.x, world.bombsleveln[i].position.y);
         	}
         }
-        
         if(GameScreen.status_screen != GameScreen.SCREEN_GAMEOVER){
         	scoreBitmap.draw(batch, "scores : " + world.getScore(),scoresBitMap_positionX,scoresBitMap_positionY);
         	font.draw(batch, "Life : " + world.life,1200,50);
         }
-        
         batch.end();
-
 	}
 }

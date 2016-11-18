@@ -21,9 +21,7 @@ public class Bomb {
 		bombImg = new Texture("bomb.png");
 	}
 	public void timer(){
-    	
 		timeOfBomb++;
-    	
 	}
 	public int getTimeOfBomb(){
 		return timeOfBomb;
@@ -34,19 +32,13 @@ public class Bomb {
 		}
 		timer();
 		System.out.println("y: "+position.y +"speed: "+SPEED);
-		
 	}
 	public boolean isCatch(/*Vector2 chopPosition*/){
-		
 		if(chopsticks.position.x>=position.x && chopsticks.position.x <= position.x+bombImg.getWidth() ){
-			
 			if(chopsticks.position.y>=position.y && chopsticks.position.y <= position.y+bombImg.getHeight() ){
-				
 					return true;
-				
 			}
 		}
-		
 		return false;
 	}
 }

@@ -47,7 +47,7 @@ public class GameScreen extends ScreenAdapter{
 	        worldRenderer = new WolrdRenderer(evilPanGame, world);
 	    }
 	 @Override
-	    public void render(float delta) {
+	 public void render(float delta) {
 		 	SpriteBatch batch = evilPanGame.batch;
 		 	updateGameScreen();
 		 	if(status_screen == SCREEN_GAME){
@@ -73,12 +73,11 @@ public class GameScreen extends ScreenAdapter{
 		 	}
 		 	
 	    }
-	  private void update(float delta) {
+	 private void update(float delta) {
 		  	world.update();
 		    
 	    }
-	  private void updateGameScreen(){
-		 
+	 private void updateGameScreen(){
 		  	if(world.getLife()<=0){
 				  status_screen = SCREEN_GAMEOVER;
 				  worldRenderer.scoresBitMap_positionX=575;
@@ -96,7 +95,7 @@ public class GameScreen extends ScreenAdapter{
 				  if(status_screen == SCREEN_PAUSE){
 						  if(Gdx.input.isKeyPressed(Keys.ENTER)){
 							  status_screen = SCREEN_GAME;
-							  }
+						  }
 				  }
 			}
 	  

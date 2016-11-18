@@ -29,14 +29,13 @@ public class World {
     }
     public int levelOfHuman(){
     	if(level<600){
-   		 return 3;
+    		return 3;
     	}else if(level<1500&&level >=600){
-   		return 5;
+    		return 5;
     	}else {
-   		return 10;
+    		return 10;
     	}
    }
-    
     public void update() {
 		chopsticks.update();
 		levelOfHuman();
@@ -45,7 +44,7 @@ public class World {
 		GenBomb();
 		reserveHuman();
 		if(checkDoubleSpace()){
-		catchingHuman();
+			catchingHuman();
 		}
 		tochingBomb();
 		deathhuman();
@@ -57,10 +56,9 @@ public class World {
     public void reserveHuman(){
     	int position = findExist(levelOfHuman());
     		if(position >= 0){
-    		humans_leveln[position] = new Human(chopsticks);
+    			humans_leveln[position] = new Human(chopsticks);
     		}
     }
-	
     public int getScore() {
     		if(score<0){
     			score=0;
@@ -80,7 +78,7 @@ public class World {
     public void GenBomb(){
     		int position = emtryBomb();
     		if(position >= 0){
-    		bombsleveln[position] = new Bomb(chopsticks);
+    			bombsleveln[position] = new Bomb(chopsticks);
     		}
     }
     public int findExist(int n){
@@ -99,12 +97,10 @@ public class World {
     	}
     	return -1;
     }
-	
 	private boolean checkDoubleSpace() {
 		if(oldSpacePress == true && spacePress == true){
 			return false;
 		}
-			
 		return true;
 	}
 	private void updateDoubleSpace() {
@@ -112,7 +108,7 @@ public class World {
 			spacePress = true;
 		}
 		else{
-		spacePress = false;
+			spacePress = false;
 		}
 		oldSpacePress = spacePress;
 	}
@@ -144,7 +140,6 @@ public class World {
 				}
 			}
 		}
-		
 	}
 	private void tochingBomb() {
 		for(int i=0;i<bombsleveln.length;i++){
@@ -156,10 +151,8 @@ public class World {
 				}
 			}
 		}
-		
 	}
 	private void deleteBombs(int i) {
-		
 		bombsleveln[i]=null;
 	}
 	private void decreaseScore() {
@@ -169,7 +162,6 @@ public class World {
 		humans_leveln[i]=null;
 	}
 	private void updateHuman(int n) {
-		
 		for(int i=0 ; i<n;i++){
 			if(humans_leveln[i] != null){
 				humans_leveln[i].update();

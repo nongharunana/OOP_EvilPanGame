@@ -23,16 +23,12 @@ public class Chopsticks {
     	int x=100,y=100;
         position = new Vector2(x,y);
     }    
-    
-    
     public Vector2 getPosition() {
         return position;    
     }
     public void move(int dir) { 
         position.x += SPEED * DIR_OFFSETS[dir][0];
     }
-
-
 	public void update() {
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
             world.getChopsticks().move(Chopsticks.DIRECTION_LEFT); 
@@ -40,6 +36,5 @@ public class Chopsticks {
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	world.getChopsticks().move(Chopsticks.DIRECTION_RIGHT);
         }   
-		
 	}
 }
