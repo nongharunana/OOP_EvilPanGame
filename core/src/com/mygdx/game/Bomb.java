@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Bomb {
 	public Vector2 position;
 	private static final int SPEED = 3 ;
-	public static final int bombMove=250;
+	public static final int bombMove=275;
 	public Texture bombImg;
 	private World world;
 	public int timeOfBomb=0; 
@@ -32,7 +32,7 @@ public class Bomb {
 		}
 		timer();
 	}
-	public boolean isCatch(/*Vector2 chopPosition*/){
+	public boolean isCatch(){
 		if(chopsticks.position.x>=position.x && chopsticks.position.x <= position.x+bombImg.getWidth() ){
 			if(chopsticks.position.y>=position.y && chopsticks.position.y <= position.y+bombImg.getHeight() ){
 					return true;

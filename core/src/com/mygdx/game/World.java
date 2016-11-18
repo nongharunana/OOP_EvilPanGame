@@ -10,7 +10,7 @@ public class World {
     private EvilPanGame evilPanGame;
     public Bomb[] bombsleveln;
     public int score;
-    public int life =5;
+    public int life =3;
     public int level=1;
     public int timer=0;
     public int humans_size;
@@ -30,7 +30,7 @@ public class World {
     public int levelOfHuman(){
     	if(level<600){
     		return 3;
-    	}else if(level<1500&&level >=600){
+    	}else if(level<2500&&level >=600){
     		return 5;
     	}else {
     		return 10;
@@ -115,10 +115,10 @@ public class World {
 	private void deathhuman() {
 		for(int i=0;i<humans_leveln.length;i++){
 			if(humans_leveln[i]!=null){
-				if(humans_leveln[i].getTime() > Human.DEATH){
+				if(humans_leveln[i].getTime() >= Human.DEATH){
+					life--;
 					killHuman(i);
 					decreaseScore();
-					life--;
 				}
 			}
 		}

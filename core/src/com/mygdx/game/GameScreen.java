@@ -80,7 +80,7 @@ public class GameScreen extends ScreenAdapter{
 	 private void updateGameScreen(){
 		  	if(world.getLife()<=0){
 				  status_screen = SCREEN_GAMEOVER;
-				  worldRenderer.scoresBitMap_positionX=575;
+				  worldRenderer.scoresBitMap_positionX=580;
 				  worldRenderer.scoresBitMap_positionY=300;
 				  worldRenderer.fontSize=5;
 			}else{
