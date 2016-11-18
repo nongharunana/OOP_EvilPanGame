@@ -5,25 +5,42 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 
 public class World {
+	public Human[] humans_leveln;
 	private Chopsticks chopsticks;
     private EvilPanGame evilPanGame;
-    public Bomb[] bombs;
+    public Bomb[] bombsleveln;
     public int score;
     public int life =5;
-    private int timer=0;
-    Human[] humans;
+    public int level=1;
+    public int timer=0;
+    public int humans_size;
 	public boolean spacePress;
 	public boolean oldSpacePress;
     World(EvilPanGame evilPanGame) {
         this.evilPanGame = evilPanGame;
         score = 0;
         chopsticks = new Chopsticks(this);
-        bombs = new Bomb[3];
-        humans = new Human[10];
+        bombsleveln = new Bomb[2];       
+        humans_leveln = new Human[100];
     }
+    public void levelUp(){
+    	level++;
+    	timer+=50;
+    }
+    public int levelOfHuman(){
+    	if(level<600){
+   		 return 3;
+    	}else if(level<1500&&level >=600){
+   		return 5;
+    	}else {
+   		return 10;
+    	}
+   }
+    
     public void update() {
 		chopsticks.update();
-		updateHuman();
+		levelOfHuman();
+		updateHuman(levelOfHuman());
 		updateBomb();
 		GenBomb();
 		reserveHuman();
@@ -35,7 +52,14 @@ public class World {
 		updateDoubleSpace();
 		deleteBomb();
 		oldSpacePress = spacePress;
+		levelUp();
 	}
+    public void reserveHuman(){
+    	int position = findExist(levelOfHuman());
+    		if(position >= 0){
+    		humans_leveln[position] = new Human(chopsticks);
+    		}
+    }
 	
     public int getScore() {
     		if(score<0){
@@ -43,9 +67,6 @@ public class World {
     		}
         return score;
     }
-  
-    
-    
 	public void increaseScore(int time) {
         if(time < Human.BURN2){
         	score += 5;
@@ -53,34 +74,28 @@ public class World {
         	score += 3;
         }
     }
- 
     Chopsticks getChopsticks() {
         return chopsticks;
     }
-	
-    public void reserveHuman(){
-    	int position = findExist();
-    	if(position >= 0){
-    		humans[position] = new Human(chopsticks);
-    	}
-    }
     public void GenBomb(){
-    	int position = emtryBomb();
-    	if(position >= 0){
-    		bombs[position] = new Bomb(chopsticks);
-    	}
+    		int position = emtryBomb();
+    		if(position >= 0){
+    		bombsleveln[position] = new Bomb(chopsticks);
+    		}
     }
-    public int findExist(){
-    	for(int i=0 ;i<humans.length;i++){
-    		if(humans[i]==null)
+    public int findExist(int n){
+    	for(int i=0 ;i<n;i++){
+    		if(humans_leveln[i]==null){
     			return i;
-    	}
+    		}
+    }
     	return -1;
     }
     public int emtryBomb(){
-    	for(int i=0 ;i<bombs.length;i++){
-    		if(bombs[i]==null)
+    	for(int i=0 ;i<bombsleveln.length;i++){
+    		if(bombsleveln[i]==null){
     			return i;
+    		}
     	}
     	return -1;
     }
@@ -100,35 +115,31 @@ public class World {
 		spacePress = false;
 		}
 		oldSpacePress = spacePress;
-		
-		
 	}
 	private void deathhuman() {
-		for(int i=0;i<humans.length;i++){
-			if(humans[i]!=null){
-				if(humans[i].getTime() > Human.DEATH){
+		for(int i=0;i<humans_leveln.length;i++){
+			if(humans_leveln[i]!=null){
+				if(humans_leveln[i].getTime() > Human.DEATH){
 					killHuman(i);
 					decreaseScore();
 					life--;
 				}
-			
 			}
 		}
-		
 	}
 	public int getLife(){
 		return life;
 	}
 	private void killHuman(int i) {
-		humans[i] = null;
+		humans_leveln[i] = null;
 		score -= 10 ;
 		life--;
 	}
 	private void catchingHuman() {
-		for(int i=0;i<humans.length;i++){
-			if(humans[i]!=null){
-				if(humans[i].isCatch(/*chopsticks.getPosition()*/)){
-					increaseScore(humans[i].getTime());
+		for(int i=0;i<humans_leveln.length;i++){
+			if(humans_leveln[i]!=null){
+				if(humans_leveln[i].isCatch()){
+					increaseScore(humans_leveln[i].getTime());
 					deleteHuman(i);
 				}
 			}
@@ -136,9 +147,9 @@ public class World {
 		
 	}
 	private void tochingBomb() {
-		for(int i=0;i<bombs.length;i++){
-			if(bombs[i]!=null){
-				if(bombs[i].isCatch(/*chopsticks.getPosition()*/)){
+		for(int i=0;i<bombsleveln.length;i++){
+			if(bombsleveln[i]!=null){
+				if(bombsleveln[i].isCatch()){
 					decreaseScore();
 					life--;
 					deleteBombs(i);
@@ -149,41 +160,36 @@ public class World {
 	}
 	private void deleteBombs(int i) {
 		
-		bombs[i]=null;
+		bombsleveln[i]=null;
 	}
 	private void decreaseScore() {
 		score-=10;
 	}
 	private void deleteHuman(int i) {
-		humans[i]=null;
-		
+		humans_leveln[i]=null;
 	}
-	private void updateHuman() {
+	private void updateHuman(int n) {
 		
-		for(int i=0 ; i<humans.length;i++){
-			if(humans[i] != null){
-				humans[i].update();
+		for(int i=0 ; i<n;i++){
+			if(humans_leveln[i] != null){
+				humans_leveln[i].update();
 			}
 		}
 	}
-private void updateBomb() {
-		
-		for(int i=0 ; i<bombs.length;i++){
-			if(bombs[i] != null){
-				bombs[i].update();
+	private void updateBomb() {
+		for(int i=0 ; i<bombsleveln.length;i++){
+			if(bombsleveln[i] != null){
+				bombsleveln[i].update();
 			}
 		}
 	}
-private void deleteBomb() {
-	for(int i=0;i<bombs.length;i++){
-		if(bombs[i]!=null){
-			if(bombs[i].getTimeOfBomb() >= Bomb.bombMove){
-				deleteBombs(i);
+	private void deleteBomb() {
+		for(int i=0;i<bombsleveln.length;i++){
+			if(bombsleveln[i]!=null){
+				if(bombsleveln[i].getTimeOfBomb() >= Bomb.bombMove){
+					deleteBombs(i);
+				}
 			}
-		
 		}
 	}
-	
-}
-
 }

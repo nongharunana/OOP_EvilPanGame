@@ -16,7 +16,7 @@ public class Bomb {
 	public Bomb(Chopsticks chopsticks){
 		this.chopsticks = chopsticks;
 		float y = EvilPanGame.HEIGHT-100;
-		float x = (int)(Math.random()*625)+200;
+		float x = (int)(Math.random()*625)+250;
 		position = new Vector2(x,y);
 		bombImg = new Texture("bomb.png");
 	}
@@ -33,6 +33,7 @@ public class Bomb {
 			position.y -= SPEED;
 		}
 		timer();
+		System.out.println("y: "+position.y +"speed: "+SPEED);
 		
 	}
 	public boolean isCatch(/*Vector2 chopPosition*/){
@@ -40,9 +41,9 @@ public class Bomb {
 		if(chopsticks.position.x>=position.x && chopsticks.position.x <= position.x+bombImg.getWidth() ){
 			
 			if(chopsticks.position.y>=position.y && chopsticks.position.y <= position.y+bombImg.getHeight() ){
-				if(Gdx.input.isKeyPressed(Keys.SPACE)){
+				
 					return true;
-				}
+				
 			}
 		}
 		

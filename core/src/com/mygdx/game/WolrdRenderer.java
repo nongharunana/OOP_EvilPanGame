@@ -42,14 +42,14 @@ public class WolrdRenderer {
         batch.begin(); 
         batch.draw(bgImg, 0, 0);
         batch.draw(chopsticksImg, position.x,position.y);
-        for(int i=0;i<world.humans.length;i++){
-        	if(world.humans[i]!=null){
-        		batch.draw(world.humans[i].humanImg,world.humans[i].position.x, world.humans[i].position.y);
+        for(int i=0;i<world.humans_leveln.length;i++){
+        	if(world.humans_leveln[i]!=null){
+        		batch.draw(world.humans_leveln[i].humanImg,world.humans_leveln[i].position.x, world.humans_leveln[i].position.y);
         	}
         }
-        for(int i=0;i<world.bombs.length;i++){
-        	if(world.bombs[i]!=null){
-        		batch.draw(world.bombs[i].bombImg,world.bombs[i].position.x, world.bombs[i].position.y);
+        for(int i=0;i<world.bombsleveln.length;i++){
+        	if(world.bombsleveln[i]!=null){
+        		batch.draw(world.bombsleveln[i].bombImg,world.bombsleveln[i].position.x, world.bombsleveln[i].position.y);
         	}
         }
         

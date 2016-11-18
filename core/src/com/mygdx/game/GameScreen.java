@@ -15,9 +15,9 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter{
 	 EvilPanGame evilPanGame;
-	 private Texture chopsticksImg;
 	 World world;
 	 WolrdRenderer worldRenderer;
+	 private Texture chopsticksImg;
 	 private Texture bgImg;
 	 private Texture pauseImg;
 	 private Texture gameOverImg;
@@ -29,7 +29,7 @@ public class GameScreen extends ScreenAdapter{
 	 public static final int SCREEN_PAUSE = 2;
 	 public static final int SCREEN_GAMEOVER = -1; 
 	 public static final int SCREEN_GAMESTART = 1;
-	private static final float fontSize = 2;
+	 private static final float fontSize = 2;
 	 public GameScreen(EvilPanGame evilPanGame) {
 	        this.evilPanGame = evilPanGame;
 	        startImg = new Texture("start.jpg");
@@ -60,7 +60,7 @@ public class GameScreen extends ScreenAdapter{
 		 		batch.draw(pauseImg, 0, 0);
 		 		font2.draw(batch, "PRESS ENTER TO RESUME : " ,575,300);
 		 		batch.end();
-		 	}	else if(status_screen == SCREEN_GAMEOVER){
+		 	}else if(status_screen == SCREEN_GAMEOVER){
 		 		batch.begin();
 		 		batch.draw(gameOverImg, 0, 0);
 		 		worldRenderer.scoreBitmap.draw(batch, "Scores : " + world.getScore(),worldRenderer.scoresBitMap_positionX,worldRenderer.scoresBitMap_positionY);
