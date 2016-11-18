@@ -31,7 +31,6 @@ public class Bomb {
 			position.y -= SPEED;
 		}
 		timer();
-		System.out.println("y: "+position.y +"speed: "+SPEED);
 	}
 	public boolean isCatch(/*Vector2 chopPosition*/){
 		if(chopsticks.position.x>=position.x && chopsticks.position.x <= position.x+bombImg.getWidth() ){
