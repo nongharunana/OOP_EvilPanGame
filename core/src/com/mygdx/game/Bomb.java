@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Bomb {
 	public Vector2 position;
 	private static final int SPEED = 3 ;
-	public static final int bombMove=300;
+	public static final int bombMove=250;
 	public Texture bombImg;
 	private World world;
 	public int timeOfBomb=0; 

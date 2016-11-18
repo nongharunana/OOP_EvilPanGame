@@ -34,7 +34,7 @@ public class WolrdRenderer {
         scoreBitmap = new BitmapFont();
         font = new BitmapFont();
         font.getData().setScale(fontSize,fontSize);
-        font.setColor(250.0f, 128.0f, 114.0f,0.0f);
+        font.setColor(1.0f,1.0f,1.0f,1.0f);
         scoreBitmap.getData().setScale(fontSize,fontSize);
         scoreBitmap.setColor(1.0f,1.0f,1.0f,1.0f);
 	}
